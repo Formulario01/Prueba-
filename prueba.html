@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Sistema de Gestión Académica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1s ease-in-out;
+        }
+
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: opacity 1s ease-in-out;
+            z-index: -1;
+        }
+
+        .background-image.hidden {
+            opacity: 0;
+        }
+
+        .background-image.visible {
+            opacity: 1;
+        }
+
+        .login-container {
+            background-color: white;
+            width: 340px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+        .login-header {
+            margin-bottom: 15px;
+        }
+        .login-header img {
+            width: 70px;
+            margin-bottom: 10px;
+        }
+        .login-header h2 {
+            margin: 0;
+            font-size: 22px;
+            color: #333;
+        }
+        .login-header p {
+            margin: 5px 0 20px;
+            font-size: 14px;
+            color: #007bff;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            border: 1px solid transparent; /* Sin borde visible */
+            border-radius: 5px;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .input-group img {
+            width: 53px; /* Tamaño ajustado para alinear mejor con el input */
+            height: 35px;
+            margin: 0; /* Eliminar el margen */
+        }
+        .input-group input {
+            border: none;
+            outline: none;
+            padding: 10px;
+            flex: 1;
+            font-size: 14px;
+            background-color: transparent;
+            border-radius: 5px; /* Asegura que el borde del input tenga un radio igual */
+        }
+        .input-group input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+        }
+        .input-group input::placeholder {
+            color: #6c757d;
+        }
+        .captcha-container {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .captcha-container img {
+            width: 100%;
+            height: auto; /* Mantiene la proporción original */
+            max-height: 60px; /* Ajusta la altura máxima */
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+        }
+        .login-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 12px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .login-btn:hover {
+            background-color: #218838;
+        }
+        .error-message {
+            color: #585656;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        .login-footer {
+            font-size: 14px;
+            color: #6c757d;
+        }
+        .login-footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+        .login-footer hr {
+            border: 0;
+            height: 1px;
+            background-color: #6c757d;
+            margin: 20px 0;
+        }
+        .login-footer p {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #6c757d;
+        }
+        .highlighted-text {
+            color: #6c757d;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-image visible" id="background1"></div>
+    <div class="background-image hidden" id="background2"></div>
+    <div class="background-image hidden" id="background3"></div>
+
+    <div class="login-container">
+        <div class="login-header">
+            <img src="https://i.ibb.co/BzwtdGq/image.png" alt="User Icon">
+            <h2>Iniciar Sesión</h2>
+            <p>Sistema de Gestión Académica</p>
+        </div>
+        <form class="login-form">
+            <div class="input-group">
+                <img src="https://i.ibb.co/bQbdsqg/image.png" alt="Usuario Icon">
+                <input type="text" id="username" placeholder="Usuario">
+            </div>
+            <div class="input-group">
+                <img src="https://i.ibb.co/cLgnDd2/image.png" alt="Contraseña Icon">
+                <input type="password" id="password" placeholder="Contraseña">
+            </div>
+            <div class="captcha-container">
+                <img src="https://i.ibb.co/Pg7scJL/image.png" alt="Captcha">
+            </div>
+            <div class="input-group">
+                <img src="https://i.ibb.co/SNpFfBY/image.png" alt="Verificación Icon">
+                <input type="text" id="verification" placeholder="Cod. Verificación">
+            </div>
+            <button type="submit" class="login-btn">Ingresar</button>
+            <div class="error-message">
+                Si está teniendo problemas para <br>Iniciar Sesión, por favor actualizar su <br>contraseña usando la opción de<br> 
+                <a href="#">Olvidó su Contraseña</a> utilizando su<br> correo institucional.
+            </div>
+        </form>
+        <div class="login-footer">
+            <a href="#">¿Olvidó su contraseña?</a> | <a href="#">¿Docente Nuevo?</a>
+            <hr>
+            <p class="highlighted-text">Dirección de Asuntos Académicos<br>
+            Universidad Nacional Agraria de la Selva<br>
+            Copyright © 2012 - 2024 DIAA UNAS</p>
+        </div>
+    </div>
+    <script>
+        const images = [
+            { element: document.getElementById('background1'), src: 'imagen1.jfif' },
+            { element: document.getElementById('background2'), src: 'imagen2.jfif' },
+            { element: document.getElementById('background3'), src: 'imagen3.jfif' }
+        ];
+        let index = 0;
+
+        function changeBackground() {
+            images[index].element.classList.remove('visible');
+            images[index].element.classList.add('hidden');
+
+            index = (index + 1) % images.length;
+
+            images[index].element.style.backgroundImage = `url(${images[index].src})`;
+            images[index].element.classList.remove('hidden');
+            images[index].element.classList.add('visible');
+        }
+
+        setInterval(changeBackground, 4000);
+        window.onload = changeBackground;
+    </script>
+</body>
+</html>
